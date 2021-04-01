@@ -1,20 +1,54 @@
-# vucms
+# Nuxt-Express
 
-## Build Setup
+Базовый шаблон для работы Nuxt в качестве middleware для Express.
+
+### Используемые технологии
+
+Nuxt.js, Express.js, Mongoose.js, MongoDB.
+
+### Установка
+
+Рекомендуемая среда разработки - VS Code + Prettier.
+Предварительно установите Node.js (https://nodejs.org/en/) и MongoDB (https://www.mongodb.com/try/download/community).
+Затем в консоли пропишите:
 
 ```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
+npm install
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+### Настройка глобальных переменных
+
+В корневой папке проекта создайте файл ".env". В нём укажите:
+
+- BASE_URL: домен вашего сайта
+- PORT: порт, на котором будет работать приложение
+- DATABASE: название базы MongoDB, с которой будет работать приложение
+
+Например, для разработки:
+
+```bash
+BASE_URL=http://localhost:3000
+PORT=3000
+DATABASE=site
+```
+
+Для production:
+
+```bash
+BASE_URL=https://site.ru
+PORT=3000
+DATABASE=site
+```
+
+### Запуск в режиме разработки
+
+```bash
+npm run dev
+```
+
+### Запуск в продакшене
+
+```bash
+npm run build
+npm start
+```

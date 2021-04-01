@@ -1,73 +1,26 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        vucms
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </div>
+  <main>
+    <h1>Контент главной страницы</h1>
+
+    <p>Базовый шаблон для работы Nuxt в качестве middleware для Express.</p>
+  </main>
 </template>
 
 <script>
-export default {}
+export default {
+  head() {
+    // У всех страниц должны быть title и description.
+    let title = "Шаблон Nuxt-Express";
+    let description = "Описание контента главной страницы сайта";
+
+    return {
+      title: title,
+      meta: [
+        { hid: "description", name: "description", content: description },
+        { hid: "og:title", property: "og:title", content: title },
+        { hid: "og:description", property: "og:description", content: description },
+      ],
+    };
+  },
+};
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>

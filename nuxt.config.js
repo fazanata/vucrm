@@ -1,50 +1,58 @@
-export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
-  head: {
-    title: 'vucms',
-    htmlAttrs: {
-      lang: 'en'
-    },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+// process.env.PORT и process.env.BASE_URL берутся из файла .env
+
+module.exports = {
+  // Указываем порт, на котором будет работать приложение.
+  server: {
+    port: process.env.PORT,
+    host: "localhost",
   },
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  // Передаём во фронт данные из .env. Эта переменная будет доступна через process.env.baseUrl.
+  // Важно! Эти данные будут видны в коде сайта. Не передавайте таким образом пароли и т.д.
+  // Если данные есть в .env, но их не передали на фронт, то их нет в коде сайта, они доступны только в бэкенде.
+  env: {
+    baseUrl: process.env.BASE_URL,
+  },
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
+  // Глобальные настройки секции Head. Можно прописать общие мета-теги, атрибуты и прочее.
+  head: {
+    htmlAttrs: { lang: "ru" },
+    meta: [
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "theme-color", content: "#000000" },
+      { name: "format-detection", content: "telephone=no" },
+    ],
+    link: [
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "stylesheet", href: "/assets/style.css" },
+    ],
+  },
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
+  // Включаем автоматическое подключение компонентов.
   components: true,
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-  ],
+  // Отключаем передачу анонимных данных о работе приложения в Nuxt.
+  telemetry: false,
 
-  // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/content
-    '@nuxt/content',
-  ],
+  // Отключаем индикацию загрузки страниц.
+  loading: false,
+  loadingIndicator: false,
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  // Отключаем предварительную загрузку контента, на который есть ссылки на текущей страницы.
+  router: { prefetchLinks: false },
 
-  // Content module configuration: https://go.nuxtjs.dev/config-content
-  content: {},
+  //Подключаем модуль Axios для выполнения запросов к бэкенду.
+  modules: ["@nuxtjs/axios"],
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
+  //Подключаем общий файл со стилями.
+  css: ["@/assets/css/main.css"],
+
+  //Подключаем proxy от axios и прописывам базовый URL для пути /api/
+  axios: { proxy: true },
+  proxy: { "/api/": process.env.BASE_URL },
+
   build: {
-  }
-}
+    // Просим стили вырезать в отдельные файлы. Иначе css будет inline.
+    extractCSS: true,
+  },
+};
