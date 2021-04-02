@@ -2,12 +2,17 @@
 const express = require("express");
 const router = express.Router();
 const Page = require("../model/page");
+const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
+
+
 
 //Вывод всех динамических страниц сайта.
 router.get("/", async (req, res) => {
   try {
     // Выбираем только нужны поля, чтобы в запросе не передавались лишние данные.
-    const pages = await Page.find().select("h1 url -_id").sort("h1").lean();
+    const pages = await Page.find().select("h1 title -_id").sort("createdDate").lean();
     res.status(200).json(pages);
   } catch (err) {
     // Если возникает проблема, то возвращаем ошибку сервера.

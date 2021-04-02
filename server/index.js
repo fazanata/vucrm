@@ -9,7 +9,7 @@ app.use(express.json());
 // Прописываем стандартные настройки Mongoose.
 const mongoose = require("mongoose");
 mongoose.Schema.Types.Boolean.convertToFalse.add("");
-const bodyParser = require("body-parser");
+
 
 mongoose.connect(`mongodb://localhost/${process.env.DATABASE}`, {
   useCreateIndex: true,
@@ -20,7 +20,12 @@ mongoose.connect(`mongodb://localhost/${process.env.DATABASE}`, {
 
 // Подключаем маршруты для управления моделью Page.
 const pageRoutes = require("./routes/page");
+const requestRoutes = require("./routes/request");
+const categoryRoutes = require("./routes/category");
+app.use("/api/request", requestRoutes);
 app.use("/api/page", pageRoutes);
+app.use("/api/category", categoryRoutes);
+
 
 // Подключаем Nuxt в режиме nuxt.render. В этом примере нет отдельного процесса с Nuxt.
 // Nuxt работает в качестве middleware для Express без своего сервера на Connect.

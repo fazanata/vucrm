@@ -1,8 +1,8 @@
 <template>
   <main>
-    <h1>Контент главной страницы</h1>
+    <h1>пока ничего</h1>
 
-    <p>Базовый шаблон для работы Nuxt в качестве middleware для Express.</p>
+    <p>тут что-то будет обязательно скоро =)</p>
   </main>
 </template>
 
@@ -10,8 +10,8 @@
 export default {
   head() {
     // У всех страниц должны быть title и description.
-    let title = "Шаблон Nuxt-Express";
-    let description = "Описание контента главной страницы сайта";
+    let title = "CRM для управления заявками";
+    let description = "оставить заявку на монтаж оборудования";
 
     return {
       title: title,
