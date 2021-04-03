@@ -44,8 +44,11 @@ module.exports = {
   //Подключаем модуль Axios для выполнения запросов к бэкенду.
   modules: ["@nuxtjs/axios"],
 
-  //Подключаем общий файл со стилями.
-  css: ["@/assets/css/main.css"],
+   // Global CSS: https://go.nuxtjs.dev/config-css
+   css: ['ant-design-vue/dist/antd.css'],
+
+   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
+   plugins: ['@/plugins/antd-ui'],
 
   //Подключаем proxy от axios и прописывам базовый URL для пути /api/
   axios: { proxy: true },

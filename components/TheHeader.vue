@@ -3,11 +3,8 @@
     <div class="center">
       <nav>
         <nuxt-link to="/">Главная</nuxt-link>
+        <nuxt-link to="/category">Вики</nuxt-link>
         <nuxt-link to="/request">Заявки</nuxt-link>
-        <nuxt-link to="/posts">Посты</nuxt-link>
-        <nuxt-link to="/about">Контакты</nuxt-link>
-        <nuxt-link to="/wiki">Вики</nuxt-link>
-
         <nuxt-link to="/page">Список страниц</nuxt-link>
         <nuxt-link to="/page/create">Создать страницу</nuxt-link>
         <nuxt-link to="/request/new">Оставить заявку</nuxt-link>

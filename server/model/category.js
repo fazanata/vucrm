@@ -33,6 +33,13 @@ const categorySchema = new mongoose.Schema({
     required: true,
     ref: "Category"
   },*/
+  
+  parent: {
+    //родительская категория 
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "User"
+  },
 });
 
 module.exports = mongoose.model("Category", categorySchema);

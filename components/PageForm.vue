@@ -12,6 +12,21 @@
       <label for="title">Title страницы</label>
       <input type="text" v-model="page.title" id="title" />
     </div>
+    <div>
+      <label for="category">Категория</label>
+      <multiselect
+        v-model="category"
+        id="category"
+        :options="categoryListOptions"
+        placeholder="Выберите категорию"
+        label="title"
+        track-by="_id"
+        selectLabel="Выбрать"
+        deselectLabel="Убрать"
+        selectedLabel="Выбрано"
+      >
+      </multiselect>
+    </div>
     <div class="form-element">
       <label for="description">Мета-тег Description</label>
       <input type="description" v-model="page.description" id="description" />
@@ -28,6 +43,8 @@
 </template>
 
 <script>
+import multiselect from "vue-multiselect";
+
 export default {
   // Это переиспользуемый компонент с формой для создания/редактирования/удаления страницы.
   // В зависимости от поступаемых пропсов меняется отображение кнопок.
@@ -35,11 +52,22 @@ export default {
   props: { page: { type: Object, default: () => ({}) }, action: { type: String } },
 
   // Нам потребуется текущий URL страницы, которые не будет связан с input формы.
+
   data() {
     return {
       currentUrl: "",
+      currentCategory: "",
+      categoryListOptions: [],
     };
   },
+  async fetch() {
+    const category = await fetch(`${process.env.baseUrl}/api/category`).then((res) => res.json());
+
+    this.categoryListOptions = category;
+    console.log('this.cat=',this.categoryListOptions )
+  },
+  // call fetch only on client-side
+  fetchOnServer: false,
   methods: {
     createPage() {
       // Создаём новую страницу.
@@ -74,9 +102,11 @@ export default {
         .catch((err) => console.log(err.response.data.message));
     },
   },
+  components: { multiselect },
   mounted() {
     // Сохраняем текущий URL на стадии mount компонента.
-    this.currentUrl = this.page.url;
+  //this.page.category !== "" ? (this.currentCategory = this.page.category) : "Выбрать";
+    this.currentUrl = this.page.url;  
   },
 };
 </script>

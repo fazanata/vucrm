@@ -18,7 +18,7 @@ export default {
 
   data() {
     return {
-      page: { url: "", h1: "", title: "", description: "", content: "" },
+      page: { url: "", h1: "", title: "", description: "", content: "", category: ""},
 
       // При нажатии на кнопку "Редактировать" показывается форма. По-умолчанию её нет в DOM.
       // На этой странице форма подключена асинхронно, то есть её нет в чанке этой страницы.

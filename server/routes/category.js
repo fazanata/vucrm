@@ -52,7 +52,7 @@ router.patch("/:url", getCategory, async (req, res) => {
 router.delete("/:url", getCategory, async (req, res) => {
   try {
     await res.category.remove();
-    res.status(200).json({ message: "Страница удалена" });
+    res.status(200).json({ message: "Категория удалена" });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

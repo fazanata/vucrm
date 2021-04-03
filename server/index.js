@@ -22,9 +22,11 @@ mongoose.connect(`mongodb://localhost/${process.env.DATABASE}`, {
 const pageRoutes = require("./routes/page");
 const requestRoutes = require("./routes/request");
 const categoryRoutes = require("./routes/category");
+const userRoutes = require("./routes/user");
 app.use("/api/request", requestRoutes);
 app.use("/api/page", pageRoutes);
 app.use("/api/category", categoryRoutes);
+app.use("/api/user", userRoutes);
 
 
 // Подключаем Nuxt в режиме nuxt.render. В этом примере нет отдельного процесса с Nuxt.

@@ -33,6 +33,7 @@ router.post("/", async (req, res) => {
     description: req.body.description,
     url: req.body.url,
     content: req.body.content,
+    category:req.body.category,
   });
   try {
     await page.save();

@@ -1,8 +1,20 @@
 <template>
   <main>
-    <h1>пока ничего</h1>
-
-    <p>тут что-то будет обязательно скоро =)</p>
+    <h1>Справочники</h1>
+    <h2>Категории</h2>
+    <nuxt-link to="/category">Список категорий</nuxt-link>
+    <nuxt-link to="/category/create">Добавить категорию</nuxt-link>
+    <h2>Страницы</h2>
+    <nuxt-link to="/page">Список страниц</nuxt-link>
+    <nuxt-link to="/page/create">Создать страницу</nuxt-link>
+    <hr/>
+    <h2>Пользователи</h2>
+    <nuxt-link to="/user">Список пользователей</nuxt-link>
+    <nuxt-link to="/user/create">Добавить пользователя</nuxt-link>   
+    <hr />
+    <h2>Заявки</h2>
+    <nuxt-link to="/request">Заявки</nuxt-link>
+    <nuxt-link to="/request/new">Оставить заявку</nuxt-link>
   </main>
 </template>
 

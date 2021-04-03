@@ -3,7 +3,7 @@
     <h1>Список категорий</h1>
     <ul>
       <li v-for="category in categories" :key="category.h1">
-        <nuxt-link :to="`/page/${category.url}`">{{ category.h1 }}</nuxt-link>
+        <nuxt-link :to="`/page/${category.url}`">{{ category.h1 }}</nuxt-link> <button @click="deleteCategory(category.url)">X</button>
       </li>
     </ul>
   </main>
@@ -30,5 +30,21 @@ export default {
       ],
     };
   },
+  methods: {
+    deleteCategory(urlCategory) {
+      // При удалении категории также используем текущий URL, а не изменяемый URL в форме.
+      console.log(urlCategory)
+      this.$axios
+        .delete(`/api/category/${urlCategory}`)
+        .then(() => {
+          console.log('удаление', this.$router.path)
+           setTimeout(() => {
+          this.$router.push(`/category/`);
+          console.log('___', this.$router.path)
+        }, 500)
+        })
+        .catch((err) => console.log(err.response.data.message));
+    },
+  }
 };
 </script>
