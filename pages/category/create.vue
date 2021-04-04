@@ -44,7 +44,7 @@ export default {
         title: this.title,
         description: this.description,
         url: this.url,
-        content: this.content,
+        content: this.content
       };
       axios.post(`${process.env.baseUrl}/api/category`, formData).then(
         setTimeout(() => {

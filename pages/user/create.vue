@@ -68,7 +68,7 @@ export default {
 
   methods: {
     handleChange(value) {
-      console.log('list=', value); // { key: "lucy", label: "Lucy (101)" }
+      //console.log('list=', value); // { key: "lucy", label: "Lucy (101)" }
     },
     newUser() {
       let formData = {
@@ -78,7 +78,7 @@ export default {
         role: this.role.key,
         note: this.note,
       };
-      console.log('formdata', formData)
+      
       axios.post(`${process.env.baseUrl}/api/user`, formData).then(
         setTimeout(() => {
           this.$router.push(`/user/`);
