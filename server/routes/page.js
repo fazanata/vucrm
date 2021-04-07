@@ -8,11 +8,23 @@ const fs = require("fs");
 
 
 
-//Вывод всех динамических страниц сайта.
+//Вывод всех динамических страниц 
 router.get("/", async (req, res) => {
   try {
     // Выбираем только нужны поля, чтобы в запросе не передавались лишние данные.
-    const pages = await Page.find().select("h1 title -_id").sort("createdDate").lean();
+    const pages = await Page.find().select("h1 title url category -_id").sort("createdDate").lean();
+    res.status(200).json(pages);
+  } catch (err) {
+    // Если возникает проблема, то возвращаем ошибку сервера.
+    res.status(500).json({ message: err.message });
+  }
+});
+
+//Вывод всех страниц категории
+router.get("/category/:category", async (req, res) => {
+  try {
+    // Выбираем только нужны поля, чтобы в запросе не передавались лишние данные.
+    const pages = await Page.find({ category: req.params.category }).select("h1 title url category content -_id").sort("createdDate").lean();
     res.status(200).json(pages);
   } catch (err) {
     // Если возникает проблема, то возвращаем ошибку сервера.

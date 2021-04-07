@@ -1,8 +1,6 @@
 {
   "name": "nuxt-express",
   "version": "1.0.0",
-  "description": "dergunov.com",
-  "author": "Aleksandr Dergunov",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
@@ -11,6 +9,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.1",
+    "@tinymce/tinymce-vue": "^3.2.8",
     "ant-design-vue": "^1.7.4",
     "core-js": "^3.9.1",
     "dotenv": "^8.2.0",

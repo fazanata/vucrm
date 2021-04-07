@@ -15,9 +15,10 @@
     <div>
       <label for="category">Категория</label>
       <multiselect
-        v-model="category"
+        v-model="page.category"
         id="category"
         :options="categoryListOptions"
+        :multiple="false"
         placeholder="Выберите категорию"
         label="title"
         track-by="_id"
@@ -43,8 +44,7 @@
 </template>
 
 <script>
-import multiselect from "vue-multiselect";
-
+import Multiselect from 'vue-multiselect'
 export default {
   // Это переиспользуемый компонент с формой для создания/редактирования/удаления страницы.
   // В зависимости от поступаемых пропсов меняется отображение кнопок.
@@ -70,6 +70,7 @@ export default {
   fetchOnServer: false,
   methods: {
     createPage() {
+      console.log('create page =', this.page)
       // Создаём новую страницу.
       this.$axios
         .post(`/api/page`, this.page)
@@ -102,15 +103,16 @@ export default {
         .catch((err) => console.log(err.response.data.message));
     },
   },
-  components: { multiselect },
+  components: { Multiselect  },
   mounted() {
     // Сохраняем текущий URL на стадии mount компонента.
-  //this.page.category !== "" ? (this.currentCategory = this.page.category) : "Выбрать";
+    this.page.category !== "" ? (this.currentCategory = this.page.category) : "Выбрать";
     this.currentUrl = this.page.url;  
   },
 };
 </script>
 
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style>
 .form {
   width: 600px;

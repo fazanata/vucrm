@@ -12,8 +12,9 @@
 <script>
 export default {
   async asyncData({ $axios }) {
-    // Получаем список динамических страниц сайта из API.
+    // Получаем список динамических страниц сайта из API
     const { data } = await $axios.get(`/api/page/`);
+    console.log('data pages =', data)
     return { pages: data };
   },
 

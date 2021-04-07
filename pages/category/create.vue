@@ -18,7 +18,24 @@
     </div>
     <div class="form-element">
       <label for="content">Контент категории</label>
-      <textarea v-model="content" id="content" rows="4"></textarea>
+      
+      <editor
+      v-model="content" id="content"
+       api-key="ezjwem0h8rrbdputr4v35dd4m25i3503pagqlmbt9l2zktr3"
+       :init="{
+         height: 500,
+         menubar: false,
+         plugins: [
+           'advlist autolink lists link image charmap print preview anchor',
+           'searchreplace visualblocks code fullscreen',
+           'insertdatetime media table paste code help wordcount'
+         ],
+         toolbar:
+           'undo redo | formatselect | bold italic backcolor | \
+           alignleft aligncenter alignright alignjustify | \
+           bullist numlist outdent indent | removeformat | help'
+       }"
+     />
     </div>
 
     <button @click="createCategory">Создать</button>
@@ -27,6 +44,7 @@
 
 <script>
 import axios from "axios";
+ import Editor from '@tinymce/tinymce-vue'
 
 export default {
   data: () => ({
@@ -53,6 +71,9 @@ export default {
       );
     },
   },
+  components: {
+     'editor': Editor
+   }
 };
 </script>
 

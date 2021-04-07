@@ -1,6 +1,8 @@
 // process.env.PORT и process.env.BASE_URL берутся из файла .env
 
 module.exports = {
+  ssr: false,
+  
   // Указываем порт, на котором будет работать приложение.
   server: {
     port: process.env.PORT,
@@ -48,7 +50,9 @@ module.exports = {
    css: ['ant-design-vue/dist/antd.css'],
 
    // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-   plugins: ['@/plugins/antd-ui'],
+   plugins: [
+     '@/plugins/antd-ui', '@/plugins/multi-select'
+    ],
 
   //Подключаем proxy от axios и прописывам базовый URL для пути /api/
   axios: { proxy: true },

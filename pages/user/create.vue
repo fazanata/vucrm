@@ -81,6 +81,7 @@ export default {
       
       axios.post(`${process.env.baseUrl}/api/user`, formData).then(
         setTimeout(() => {
+          console.log('formdata=', formData);
           this.$router.push(`/user/`);
         }, 500)
       );

@@ -10,7 +10,7 @@
         <nuxt-link to="/request/new">Оставить заявку</nuxt-link>
       </nav>
       <div class="header-contacts">
-        <div class="header-contacts-name">Монтаж газового оборудования</div>
+        <div class="header-contacts-name">Прием заявок на ремонт</div>
         <div class="header-contacts-phone">
           <a href="tel: 79272820132">+7 927 282 01 32</a>
           <a href="mailto:iui@jkjkl.com" target="_blank">asd@gjgj.com</a>
