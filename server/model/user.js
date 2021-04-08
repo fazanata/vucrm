@@ -25,6 +25,11 @@ const userSchema = new mongoose.Schema({
   note: {
     type: String,
   },
+  createdDate: {
+    // У каждого пользователя автоматически сохраняется дата создания.
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);

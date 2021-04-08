@@ -8,12 +8,16 @@
     "start": "cross-env NODE_ENV=production node server/index.js"
   },
   "dependencies": {
+    "@nuxtjs/auth-next": "5.0.0-1616003482.75c20e6",
     "@nuxtjs/axios": "^5.13.1",
     "@tinymce/tinymce-vue": "^3.2.8",
     "ant-design-vue": "^1.7.4",
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.5",
     "core-js": "^3.9.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
     "mongoose": "^5.12.1",
     "multer": "^1.4.2",
     "nuxt": "^2.15.3",

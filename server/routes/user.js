@@ -16,18 +16,33 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const user = new User({
-    name: req.body.name,
-    login: req.body.login,
-    password: req.body.password,
-    note: req.body.note,
-    role: req.body.role,
-  });
-  try {
-    await user.save();
-    res.status(200).json({ message: "Пользователь создан" });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  if (req.headers.authorization === undefined) {
+    res.status(403).json({ message: "Токен не распознан"});
+  } else {
+    const token = req.headers.authorization.split("Bearer ")[1];
+    jwt.verify(token, process.env.Token, async function(err, decoded){
+      if (err) {
+        res.status(403).json({ message: "Токен неправильный" });
+      }
+      if (decoded.role !== "admin") {
+        res.status(403).json({ message: "Нужны права администратора "});
+      } else {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const user = new User({
+          login: req.body.login,
+          name: req.body.name,
+          password: hashedPassword,
+          note: req.body.note,
+          role: req.body.role
+        });
+        try {
+          await user.save();
+          req.status(201).json({ message: "Пользователь создан"});
+        } catch (err) {
+          res.status(500).json({ message: err.message});
+        }
+      }
+    })
   }
 });
 

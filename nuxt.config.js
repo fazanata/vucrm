@@ -16,6 +16,28 @@ module.exports = {
     baseUrl: process.env.BASE_URL,
   },
 
+
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          // required: true,
+          // type: 'Bearer'
+        },
+        user: {
+          property: 'user',
+          // autoFetch: true
+        },
+        endpoints: {
+          login: { url: '/api/auth/login', method: 'post' },
+          logout: { url: '/api/auth/logout', method: 'post' },
+          user: { url: '/api/auth/user', method: 'get' }
+        }
+      }
+    }
+  },
+
   // Глобальные настройки секции Head. Можно прописать общие мета-теги, атрибуты и прочее.
   head: {
     htmlAttrs: { lang: "ru" },
@@ -41,10 +63,17 @@ module.exports = {
   loadingIndicator: false,
 
   // Отключаем предварительную загрузку контента, на который есть ссылки на текущей страницы.
-  router: { prefetchLinks: false },
 
+  router: {
+    prefetchLinks: false,
+    middleware: ['auth']
+  },
   //Подключаем модуль Axios для выполнения запросов к бэкенду.
-  modules: ["@nuxtjs/axios"],
+  modules: [
+    "@nuxtjs/axios",
+    "@nuxtjs/auth-next"
+  ],
+
 
    // Global CSS: https://go.nuxtjs.dev/config-css
    css: ['ant-design-vue/dist/antd.css'],
